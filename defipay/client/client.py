@@ -42,8 +42,8 @@ class Client(object):
         content = response.content.decode()
         success = True
         try:
-            timestamp = response.headers["BIZ_TIMESTAMP"]
-            signature = response.headers["BIZ_RESP_SIGNATURE"]
+            timestamp = response.headers["BIZ-TIMESTAMP"]
+            signature = response.headers["BIZ-RESP-SIGNATURE"]
             if self.debug:
                 print(f"response <<<<<<<< \n content: {content}\n headers: {response.headers} \n")
             success = verify_ecdsa_signature("%s|%s" % (content, timestamp), signature, self.env.defipayPub)
